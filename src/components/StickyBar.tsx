@@ -35,8 +35,8 @@ export default function StickyBar() {
 
   return (
     <div
-      className={`sticky top-0 z-40 w-full overflow-hidden transition-[max-height] duration-300 ease-out ${
-        visible ? "max-h-24" : "max-h-0"
+      className={`sticky top-0 z-40 w-full overflow-hidden transition-[height] duration-300 ease-out ${
+        visible ? "h-[76px]" : "h-0"
       }`}
       aria-hidden={!visible}
       inert={!visible}

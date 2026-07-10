@@ -37,7 +37,7 @@ export default function TrustElement() {
         Work with Keysight
       </p>
 
-      <div className="relative min-w-0 flex-1 overflow-hidden">
+      <div className="relative -mr-4 min-w-0 flex-1 overflow-hidden">
         <div className="flex w-max animate-marquee items-center gap-2">
           {[...TILES, ...TILES].map((tile, i) => (
             <div
