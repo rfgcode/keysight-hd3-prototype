@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 const HIGHLIGHTS = [
@@ -7,7 +9,11 @@ const HIGHLIGHTS = [
   "Available with OEM calibration options",
 ];
 
-export default function Hero() {
+export default function Hero({
+  onOpenSummary,
+}: {
+  onOpenSummary?: () => void;
+}) {
   return (
     <section className="relative flex w-full flex-col items-center gap-4 overflow-hidden px-6 pb-10 pt-8">
       <div aria-hidden className="absolute inset-0">
@@ -68,6 +74,7 @@ export default function Hero() {
           </button>
           <button
             type="button"
+            onClick={onOpenSummary}
             className="flex h-[26px] items-center gap-[6px] rounded-full border border-white px-3 py-1 text-[13px] font-medium text-white transition-colors hover:bg-white/10 active:bg-white/20"
           >
             <Image src="/images/icon-list-ul.svg" alt="" width={12} height={12} />

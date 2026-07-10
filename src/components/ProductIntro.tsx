@@ -33,7 +33,7 @@ export default function ProductIntro() {
       </div>
 
       <div className="flex w-full flex-wrap items-start gap-y-3">
-        <div className="flex flex-col items-start gap-4">
+        <div id="product-tile" className="flex flex-col items-start gap-4">
           <ProductCard />
           <button
             type="button"

@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import ProductIntro from "@/components/ProductIntro";
@@ -9,13 +12,18 @@ import Downloads from "@/components/Downloads";
 import QuickFacts from "@/components/QuickFacts";
 import Browse from "@/components/Browse";
 import Footer from "@/components/Footer";
+import StickyBar from "@/components/StickyBar";
+import SummarySheet from "@/components/SummarySheet";
 
 export default function Home() {
+  const [summaryOpen, setSummaryOpen] = useState(false);
+
   return (
     <div className="mx-auto flex w-full max-w-[430px] flex-1 flex-col items-center bg-extra-light-gray">
       <Header />
-      <main className="flex w-full flex-1 flex-col items-center">
-        <Hero />
+      <main className="relative flex w-full flex-1 flex-col items-center">
+        <StickyBar />
+        <Hero onOpenSummary={() => setSummaryOpen(true)} />
         <ProductIntro />
         <Benefits />
         <ComparisonSection />
@@ -26,6 +34,7 @@ export default function Home() {
         <Browse />
       </main>
       <Footer />
+      <SummarySheet open={summaryOpen} onClose={() => setSummaryOpen(false)} />
     </div>
   );
 }
