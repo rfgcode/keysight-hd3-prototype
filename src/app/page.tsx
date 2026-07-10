@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="mx-auto flex w-full max-w-[430px] flex-1 flex-col items-center bg-white">
+    <div className="mx-auto flex w-full max-w-[430px] flex-1 flex-col items-center bg-extra-light-gray">
       <Header />
       <main className="flex w-full flex-1 flex-col items-center">
         <Hero />

@@ -25,7 +25,7 @@ export default function Hero() {
       <div className="relative w-[180px] px-4 py-2">
         <div className="relative aspect-[470/359] w-full">
           <Image
-            src="/images/hero-instrument.png"
+            src="/images/hero-instrument.webp"
             alt="Keysight InfiniiVision HD3 oscilloscope"
             fill
             priority
