@@ -65,10 +65,10 @@ export default function ComparisonSection() {
 
             {expanded && (
               <div className="flex w-full flex-col items-start gap-4 text-[16px] leading-[1.5] text-white">
-                <p className="font-medium">
-                  The advantage of 14-bit architecture
-                </p>
                 <div className="flex w-full flex-col items-start">
+                  <p className="font-bold">
+                    The advantage of 14-bit architecture
+                  </p>
                   <p>
                     Most oscilloscopes in this class use 8–12 bit ADCs. While
                     sufficient for general-purpose measurements, they often
