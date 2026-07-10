@@ -1,22 +1,22 @@
 import Accordion from "./ui/Accordion";
-import HD3SummaryBody from "./HD3SummaryBody";
+import KeyMeasurementBody from "./KeyMeasurementBody";
 
 const ITEMS = [
   {
     question: "Power Integrity & Ripple Measurement",
-    answer: <HD3SummaryBody size="accordion" />,
+    answer: <KeyMeasurementBody />,
   },
   {
     question: "Serial Bus Debugging (CAN, LIN, FlexRay)",
-    answer: <HD3SummaryBody size="accordion" />,
+    answer: <KeyMeasurementBody />,
   },
   {
     question: "Capturing Rare Glitches And Intermittent Signals",
-    answer: <HD3SummaryBody size="accordion" />,
+    answer: <KeyMeasurementBody />,
   },
   {
     question: "Frequency and RF Signal Analysis",
-    answer: <HD3SummaryBody size="accordion" />,
+    answer: <KeyMeasurementBody />,
   },
 ];
 
