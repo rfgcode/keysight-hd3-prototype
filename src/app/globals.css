@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --color-keysight-red: #e90029;
+  --color-ink: #000000;
+  --color-gray-medium: #97989b;
+  --color-gray-line: #d6d7d9;
+  --color-white: #ffffff;
+}
+
+@theme inline {
+  --color-keysight-red: var(--color-keysight-red);
+  --color-ink: var(--color-ink);
+  --color-gray-medium: var(--color-gray-medium);
+  --color-gray-line: var(--color-gray-line);
+  --font-sans: var(--font-graphik), "Graphik", ui-sans-serif, system-ui,
+    sans-serif;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  overflow-x: hidden;
+}

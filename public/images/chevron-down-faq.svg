@@ -1,0 +1,5 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="chevron-down">
+<path id="Primary" d="M8.35312 11.3531C8.15937 11.5469 7.84062 11.5469 7.64687 11.3531L1.64688 5.35313C1.45313 5.15938 1.45313 4.84063 1.64688 4.64688C1.84063 4.45313 2.15938 4.45313 2.35313 4.64688L8 10.2937L13.6469 4.64688C13.8406 4.45313 14.1594 4.45313 14.3531 4.64688C14.5469 4.84063 14.5469 5.15938 14.3531 5.35313L8.35312 11.3531Z" fill="var(--fill-0, black)"/>
+</g>
+</svg>
