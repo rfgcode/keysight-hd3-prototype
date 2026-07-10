@@ -152,11 +152,7 @@ export default function Footer() {
               {FAMILIES.map((family, i) => (
                 <div
                   key={i}
-                  className={`flex shrink-0 items-center gap-6 rounded border py-3 pl-4 pr-6 ${
-                    i === 2
-                      ? "border-transparent bg-white"
-                      : "border-[#373a36] bg-[#373a36]/50"
-                  }`}
+                  className="flex shrink-0 items-center gap-6 rounded border border-[#373a36] bg-[#373a36]/50 py-3 pl-4 pr-6"
                 >
                   <div className="relative h-[67px] w-[100px] shrink-0">
                     <Image
@@ -167,11 +163,7 @@ export default function Footer() {
                       className="object-contain"
                     />
                   </div>
-                  <div
-                    className={`flex flex-col items-start justify-center gap-3 whitespace-nowrap ${
-                      i === 2 ? "text-black" : "text-white"
-                    }`}
-                  >
+                  <div className="flex flex-col items-start justify-center gap-3 whitespace-nowrap text-white">
                     <div className="flex flex-col items-start justify-center">
                       <p className="text-[13px]">{family.name}</p>
                       <p className="text-[11px] uppercase tracking-[0.22px] text-[#97989b]">
@@ -214,7 +206,7 @@ export default function Footer() {
         <div className="h-px w-full bg-[#373a36]" />
         <div className="flex w-full flex-col items-start gap-3">
           <p className="text-[13px] leading-[1.5] text-white">
-            © 2000 – 2025 Keysight Technologies
+            © 2000 – 2026 Keysight Technologies
           </p>
           <div className="flex w-full flex-wrap items-center gap-x-4 gap-y-2">
             <a href="#" className="text-[13px] leading-[1.5] text-white hover:underline">Privacy</a>

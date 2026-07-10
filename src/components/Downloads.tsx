@@ -7,12 +7,10 @@ const TILES = [
   {
     title: "Product Data Sheet",
     cta: "Download PDF",
-    style: "text" as const,
   },
   {
     title: "VSA Software",
     cta: "Download",
-    style: "solid" as const,
   },
 ];
 
@@ -77,21 +75,12 @@ export default function Downloads() {
                   <p className="text-[16px] font-medium leading-[1.5] text-black">
                     {tile.title}
                   </p>
-                  {tile.style === "text" ? (
-                    <button
-                      type="button"
-                      className="text-[13px] font-medium leading-[1.5] text-keysight-red hover:underline"
-                    >
-                      {tile.cta}
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      className="flex h-[26px] items-center rounded-full bg-keysight-red px-3 py-1 text-[13px] font-medium text-white transition-colors hover:bg-[#c40022] active:bg-[#a3001c]"
-                    >
-                      {tile.cta}
-                    </button>
-                  )}
+                  <button
+                    type="button"
+                    className="text-[13px] font-medium leading-[1.5] text-keysight-red hover:underline"
+                  >
+                    {tile.cta}
+                  </button>
                 </div>
               </div>
             </div>

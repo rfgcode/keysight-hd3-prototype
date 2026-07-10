@@ -61,7 +61,7 @@ export default function Accordion({
             >
               <div className="min-h-0">
                 <div
-                  className={`pb-1 text-[13px] leading-[1.5] ${
+                  className={`text-[13px] leading-[1.5] ${
                     isDark ? "text-[#d6d7d9]" : "text-[#797a7c]"
                   }`}
                 >
