@@ -32,7 +32,7 @@ export default function ComparisonSection() {
     <section className="relative flex w-full items-start overflow-hidden px-4 py-8">
       <div aria-hidden className="absolute inset-0">
         <Image
-          src="/images/comparison-bg.png"
+          src="/images/comparison-bg.webp"
           alt=""
           fill
           sizes="100vw"
