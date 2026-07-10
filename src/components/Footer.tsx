@@ -57,11 +57,9 @@ const KNOWLEDGE_BASE = [
 export default function Footer() {
   const [familiesOpen, setFamiliesOpen] = useState(true);
   const [activeFilter, setActiveFilter] = useState("All");
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
 
   return (
-    <footer className="flex w-full flex-col items-start gap-10 bg-black px-4 pb-8 pt-4">
+    <footer className="flex w-full min-w-0 flex-col items-start gap-10 bg-black px-4 pb-8 pt-4">
       <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg px-4 py-6 shadow-[0_4px_4px_rgba(0,0,0,0.08)]">
         <div aria-hidden className="absolute inset-0">
           <Image
@@ -86,38 +84,16 @@ export default function Footer() {
             </p>
           </div>
 
-          {subscribed ? (
-            <p className="text-[13px] font-medium text-white">
-              You&rsquo;re subscribed — thanks!
-            </p>
-          ) : (
-            <form
-              className="flex w-full flex-col gap-2 sm:flex-row"
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (email) setSubscribed(true);
-              }}
-            >
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email address"
-                className="h-[38px] min-w-0 flex-1 rounded border border-[#97989b] bg-white/5 px-3 text-[13px] text-white placeholder:text-[#97989b] outline-none focus:border-white"
-              />
-              <button
-                type="submit"
-                className="flex items-center justify-center whitespace-nowrap rounded bg-keysight-red px-[18px] py-[10px] text-[13px] font-medium text-white transition-colors hover:bg-[#c40022] active:bg-[#a3001c]"
-              >
-                Get email updates
-              </button>
-            </form>
-          )}
+          <button
+            type="button"
+            className="flex items-center justify-center whitespace-nowrap rounded bg-keysight-red px-[18px] py-[10px] text-[13px] font-medium text-white transition-colors hover:bg-[#c40022] active:bg-[#a3001c]"
+          >
+            Get email updates
+          </button>
         </div>
       </div>
 
-      <div className="flex w-full flex-col items-start gap-4">
+      <div className="flex w-full min-w-0 flex-col items-start gap-4">
         <button
           type="button"
           onClick={() => setFamiliesOpen((v) => !v)}
@@ -147,12 +123,12 @@ export default function Footer() {
         </button>
 
         <div
-          className={`grid w-full overflow-hidden transition-[grid-template-rows] duration-300 ease-out ${
+          className={`grid w-full min-w-0 overflow-hidden transition-[grid-template-rows] duration-300 ease-out ${
             familiesOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
           }`}
         >
-          <div className="flex min-h-0 flex-col gap-4">
-            <div className="flex w-full items-center gap-[6px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex min-w-0 min-h-0 flex-col gap-4">
+            <div className="flex w-full min-w-0 items-center gap-[6px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {FILTERS.map((filter) => {
                 const isActive = filter === activeFilter;
                 return (
@@ -172,7 +148,7 @@ export default function Footer() {
               })}
             </div>
 
-            <div className="flex items-center gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex w-full min-w-0 items-center gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {FAMILIES.map((family, i) => (
                 <div
                   key={i}

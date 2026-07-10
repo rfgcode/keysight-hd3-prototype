@@ -41,11 +41,11 @@ export default function Hero() {
           14-Bit ADC Precision
         </h1>
 
-        <div className="flex w-full gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="-mx-6 flex w-[calc(100%+3rem)] gap-2 overflow-x-auto pb-1 pl-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {HIGHLIGHTS.map((text) => (
             <div
               key={text}
-              className="flex w-[160px] shrink-0 flex-col gap-3 rounded-lg bg-black/16 p-4 last:mr-4"
+              className="flex w-[160px] shrink-0 flex-col gap-3 rounded-lg bg-black/16 p-4"
             >
               <Image
                 src="/images/icon-circle-check.svg"
