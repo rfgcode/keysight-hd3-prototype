@@ -1,20 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function StickyBar() {
   const [visible, setVisible] = useState(false);
   const [added, setAdded] = useState(false);
+  const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const target = document.getElementById("product-tile");
-    if (!target) return;
+    const tile = document.getElementById("product-tile");
+    const footer = document.querySelector("footer");
+    if (!tile) return;
 
     let ticking = false;
     const update = () => {
-      const rect = target.getBoundingClientRect();
-      setVisible(rect.bottom < 0);
+      const tileRect = tile.getBoundingClientRect();
+      const barHeight = barRef.current?.offsetHeight ?? 0;
+      const pastTile = tileRect.bottom < 0;
+      const coveringFooter = footer
+        ? footer.getBoundingClientRect().top < barHeight
+        : false;
+      setVisible(pastTile && !coveringFooter);
       ticking = false;
     };
     const onScroll = () => {
@@ -35,13 +42,16 @@ export default function StickyBar() {
 
   return (
     <div
-      className={`sticky top-0 z-40 w-full overflow-hidden transition-[height] duration-300 ease-out ${
-        visible ? "h-[76px]" : "h-0"
+      className={`fixed inset-x-0 top-0 z-40 mx-auto w-full max-w-[430px] transition-[transform,opacity] duration-300 ease-out ${
+        visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       }`}
       aria-hidden={!visible}
       inert={!visible}
     >
-      <div className="flex items-center gap-2 bg-white px-4 py-3 shadow-[0_4px_4px_rgba(0,0,0,0.16)]">
+      <div
+        ref={barRef}
+        className="flex items-center gap-2 bg-white px-4 py-3 shadow-[0_4px_4px_rgba(0,0,0,0.16)]"
+      >
         <div className="relative h-11 w-[76px] shrink-0">
           <Image
             src="/images/sticky-product-thumb.png"

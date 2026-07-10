@@ -9,7 +9,7 @@ export default function HD3SummaryBody({
   const isSheet = size === "sheet";
   const textClass = isSheet
     ? "text-[16px] leading-[1.5] text-black"
-    : "text-[13px] leading-[1.5] text-[#797a7c]";
+    : "text-[13px] leading-[1.5] text-black";
   const spacingClass = isSheet ? "mb-4" : "mb-3";
 
   return (
