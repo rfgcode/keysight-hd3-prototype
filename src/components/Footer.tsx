@@ -59,7 +59,7 @@ export default function Footer() {
   const [activeFilter, setActiveFilter] = useState("All");
 
   return (
-    <footer className="flex w-full min-w-0 flex-col items-start gap-10 bg-black px-4 pb-8 pt-4">
+    <footer className="flex w-full min-w-0 flex-col items-start gap-10 bg-black px-4 pt-4 pb-[calc(2rem+env(safe-area-inset-bottom))]">
       <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg px-4 py-6 shadow-[0_4px_4px_rgba(0,0,0,0.08)]">
         <div aria-hidden className="absolute inset-0">
           <Image

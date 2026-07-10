@@ -22,7 +22,7 @@ export default function Accordion({
       {items.map((item, i) => {
         const open = openIndex === i;
         return (
-          <div key={item.question} className="flex w-full flex-col items-start gap-4">
+          <div key={item.question} className="flex w-full flex-col items-start">
             <button
               type="button"
               aria-expanded={open}
@@ -55,8 +55,8 @@ export default function Accordion({
               </svg>
             </button>
             <div
-              className={`grid w-full overflow-hidden transition-[grid-template-rows] duration-200 ease-out ${
-                open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+              className={`grid w-full overflow-hidden transition-[grid-template-rows,margin-top] duration-200 ease-out ${
+                open ? "mt-4 grid-rows-[1fr]" : "mt-0 grid-rows-[0fr]"
               }`}
             >
               <div className="min-h-0">
@@ -70,7 +70,7 @@ export default function Accordion({
               </div>
             </div>
             <div
-              className={`h-px w-full ${isDark ? "bg-[#373a36]" : "bg-gray-line"}`}
+              className={`mt-4 h-px w-full ${isDark ? "bg-[#373a36]" : "bg-gray-line"}`}
             />
           </div>
         );
