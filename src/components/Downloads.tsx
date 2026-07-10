@@ -54,7 +54,7 @@ export default function Downloads() {
         <div
           ref={trackRef}
           onScroll={handleScroll}
-          className="-mx-4 flex snap-x snap-mandatory gap-2 overflow-x-auto pl-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="-mx-4 flex w-[calc(100%+2rem)] snap-x snap-mandatory gap-2 overflow-x-auto pl-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {TILES.map((tile) => (
             <div

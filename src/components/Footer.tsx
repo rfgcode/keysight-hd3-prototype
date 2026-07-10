@@ -73,7 +73,11 @@ export default function Footer() {
         </div>
 
         <div className="relative flex w-full flex-1 flex-col items-start justify-center gap-3">
-          <Image src="/images/icon-envelope.svg" alt="" width={40} height={40} />
+          <div className="relative size-[40px] shrink-0">
+            <div className="absolute inset-[-80%]">
+              <Image src="/images/icon-envelope.svg" alt="" fill />
+            </div>
+          </div>
           <div className="flex w-full flex-col items-start gap-[5px] text-white">
             <p className="text-[16px] font-medium leading-[1.5]">
               Stay Up to Date on Used Equipment!
