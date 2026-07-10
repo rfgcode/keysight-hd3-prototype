@@ -45,7 +45,7 @@ export default function ComparisonSection() {
         <div className="flex w-full flex-col items-center justify-center gap-5 p-6">
           <div className="relative h-[132px] w-[160px]">
             <Image
-              src="/images/comparison-photo.png"
+              src="/images/comparison-photo.webp"
               alt="Keysight HD3 oscilloscope"
               fill
               sizes="160px"

@@ -22,7 +22,7 @@ export default function ProductCard() {
         <div className="relative flex h-[124px] w-full items-center justify-center px-4">
           <div className="relative size-full">
             <Image
-              src="/images/product-image.png"
+              src="/images/product-image.webp"
               alt="Keysight HD304MSO oscilloscope"
               fill
               className="object-contain"
