@@ -44,7 +44,7 @@ export default function SummarySheet({
         role="dialog"
         aria-modal="true"
         aria-label="InfiniiVision HD3 Oscilloscope summary"
-        className={`absolute inset-x-0 bottom-0 mx-auto flex max-h-[85vh] w-full max-w-[430px] flex-col items-end rounded-t-lg bg-white pb-12 pt-16 transition-transform duration-300 ease-out ${
+        className={`absolute inset-x-0 bottom-0 mx-auto flex max-h-[85vh] w-full flex-col items-end rounded-t-lg bg-white pb-12 pt-16 transition-transform duration-300 ease-out ${
           open ? "translate-y-0" : "translate-y-full"
         }`}
       >

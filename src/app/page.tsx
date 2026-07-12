@@ -19,7 +19,7 @@ export default function Home() {
   const [summaryOpen, setSummaryOpen] = useState(false);
 
   return (
-    <div className="mx-auto flex w-full max-w-[430px] flex-1 flex-col items-center bg-extra-light-gray">
+    <div className="mx-auto flex w-full flex-1 flex-col items-center bg-extra-light-gray">
       <Header />
       <main className="relative flex w-full flex-1 flex-col items-center">
         <StickyBar />

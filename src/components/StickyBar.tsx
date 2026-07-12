@@ -40,7 +40,7 @@ export default function StickyBar() {
 
   return (
     <div
-      className={`fixed inset-x-0 top-0 z-40 mx-auto w-full max-w-[430px] transition-[transform,opacity] duration-300 ease-out ${
+      className={`fixed inset-x-0 top-0 z-40 mx-auto w-full transition-[transform,opacity] duration-300 ease-out ${
         visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       }`}
       aria-hidden={!visible}
