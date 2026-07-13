@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 const TILES = [
   {
@@ -23,7 +26,88 @@ const TILES = [
   },
 ];
 
+const LOOP_DURATION_MS = 18000;
+
 export default function TrustElement() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef(0);
+  const singleSetWidthRef = useRef(0);
+  const draggingRef = useRef(false);
+  const lastPointerXRef = useRef(0);
+  const reducedMotionRef = useRef(false);
+
+  const applyOffset = () => {
+    const track = trackRef.current;
+    const singleWidth = singleSetWidthRef.current;
+    if (!track) return;
+    if (singleWidth > 0) {
+      while (offsetRef.current <= -singleWidth) offsetRef.current += singleWidth;
+      while (offsetRef.current > 0) offsetRef.current -= singleWidth;
+    }
+    track.style.transform = `translateX(${offsetRef.current}px)`;
+  };
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const measure = () => {
+      singleSetWidthRef.current = track.scrollWidth / 2;
+    };
+    measure();
+
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    reducedMotionRef.current = motionQuery.matches;
+    const handleMotionChange = () => {
+      reducedMotionRef.current = motionQuery.matches;
+    };
+    motionQuery.addEventListener("change", handleMotionChange);
+
+    const handleResize = () => measure();
+    window.addEventListener("resize", handleResize);
+
+    let lastTime: number | null = null;
+    let rafId: number;
+
+    const step = (time: number) => {
+      if (lastTime === null) lastTime = time;
+      const dt = time - lastTime;
+      lastTime = time;
+
+      if (!draggingRef.current && !reducedMotionRef.current && singleSetWidthRef.current > 0) {
+        const speed = singleSetWidthRef.current / LOOP_DURATION_MS;
+        offsetRef.current -= speed * dt;
+      }
+
+      applyOffset();
+      rafId = requestAnimationFrame(step);
+    };
+    rafId = requestAnimationFrame(step);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", handleResize);
+      motionQuery.removeEventListener("change", handleMotionChange);
+    };
+  }, []);
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    draggingRef.current = true;
+    lastPointerXRef.current = e.clientX;
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!draggingRef.current) return;
+    offsetRef.current += e.clientX - lastPointerXRef.current;
+    lastPointerXRef.current = e.clientX;
+    applyOffset();
+  };
+
+  const endDrag = () => {
+    draggingRef.current = false;
+  };
+
   return (
     <section className="relative flex w-full items-center gap-6 overflow-hidden px-4 py-3">
       <div aria-hidden className="absolute inset-0">
@@ -38,7 +122,15 @@ export default function TrustElement() {
       </p>
 
       <div className="relative -mr-4 min-w-0 flex-1 overflow-hidden">
-        <div className="flex w-max animate-marquee items-center gap-2">
+        <div
+          ref={trackRef}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          onDragStart={(e) => e.preventDefault()}
+          className="flex w-max cursor-grab items-center gap-2 touch-pan-y select-none active:cursor-grabbing"
+        >
           {[...TILES, ...TILES].map((tile, i) => (
             <div
               key={i}
