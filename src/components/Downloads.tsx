@@ -59,7 +59,7 @@ export default function Downloads() {
           {TILES.map((tile) => (
             <div
               key={tile.title}
-              className="flex w-full shrink-0 snap-start items-start rounded-lg bg-white p-4"
+              className="flex w-11/12 shrink-0 snap-start items-start rounded-lg bg-white p-4"
             >
               <div className="grid flex-1 grid-cols-[minmax(0,1fr)_minmax(0,4fr)] gap-4">
                 <div className="relative aspect-[55/72] overflow-hidden rounded">
