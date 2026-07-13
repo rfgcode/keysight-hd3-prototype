@@ -14,14 +14,12 @@ import Browse from "@/components/Browse";
 import Footer from "@/components/Footer";
 import StickyBar from "@/components/StickyBar";
 import SummarySheet from "@/components/SummarySheet";
-import BodyBackgroundSync from "@/components/BodyBackgroundSync";
 
 export default function Home() {
   const [summaryOpen, setSummaryOpen] = useState(false);
 
   return (
     <div className="mx-auto flex w-full flex-1 flex-col items-center overflow-x-hidden bg-extra-light-gray">
-      <BodyBackgroundSync />
       <Header />
       <main className="relative flex w-full flex-1 flex-col items-center">
         <StickyBar />
