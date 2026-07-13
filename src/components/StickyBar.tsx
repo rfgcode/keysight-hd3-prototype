@@ -19,11 +19,7 @@ export default function StickyBar() {
       const coveringFooter = footer
         ? footer.getBoundingClientRect().top < barHeight
         : false;
-      const isVisible = pastTile && !coveringFooter;
-      setVisible(isVisible);
-      document.body.style.backgroundColor = isVisible
-        ? "var(--color-extra-light-gray)"
-        : "transparent";
+      setVisible(pastTile && !coveringFooter);
       ticking = false;
     };
     const onScroll = () => {
@@ -39,7 +35,6 @@ export default function StickyBar() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      document.body.style.backgroundColor = "";
     };
   }, []);
 
