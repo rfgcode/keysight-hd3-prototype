@@ -48,19 +48,21 @@ export default function StickyBar() {
     >
       <div
         ref={barRef}
-        className="flex items-center gap-2 bg-extra-light-gray px-4 py-3 shadow-[0_4px_4px_rgba(0,0,0,0.16)]"
+        className="bg-extra-light-gray pt-[env(safe-area-inset-top)] shadow-[0_4px_4px_rgba(0,0,0,0.16)]"
       >
-        <div className="flex min-w-0 flex-1 flex-col items-start gap-0.5 text-[13px] font-medium leading-[1.2] text-black">
-          <p className="truncate w-full">Keysight HD304MSO</p>
-          <p className="truncate w-full">USD 12,775.95</p>
-        </div>
+        <div className="flex items-center gap-2 px-4 py-3">
+          <div className="flex min-w-0 flex-1 flex-col items-start gap-0.5 text-[13px] font-medium leading-[1.2] text-black">
+            <p className="truncate w-full">Keysight HD304MSO</p>
+            <p className="truncate w-full">USD 12,775.95</p>
+          </div>
 
-        <button
-          type="button"
-          className="flex shrink-0 items-center justify-center whitespace-nowrap rounded bg-keysight-red px-[18px] py-[10px] text-[13px] font-medium text-white transition-colors hover:bg-[#c40022] active:bg-[#a3001c]"
-        >
-          Request quote
-        </button>
+          <button
+            type="button"
+            className="flex shrink-0 items-center justify-center whitespace-nowrap rounded bg-keysight-red px-[18px] py-[10px] text-[13px] font-medium text-white transition-colors hover:bg-[#c40022] active:bg-[#a3001c]"
+          >
+            Request quote
+          </button>
+        </div>
       </div>
     </div>
   );

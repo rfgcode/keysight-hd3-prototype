@@ -21,7 +21,6 @@
 
 html {
   -webkit-tap-highlight-color: transparent;
-  background-color: #000000;
 }
 
 @keyframes marquee {
