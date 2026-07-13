@@ -51,7 +51,7 @@ export default function Hero({
           {HIGHLIGHTS.map((text) => (
             <div
               key={text}
-              className="flex w-[calc(45%-0.25rem)] shrink-0 flex-col gap-3 rounded-lg bg-black/16 p-4"
+              className="flex w-[calc(47%-0.25rem)] shrink-0 flex-col gap-3 rounded-lg bg-black/16 p-4"
             >
               <Image
                 src="/images/icon-circle-check.svg"
