@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const ROWS = [
   {
@@ -30,8 +30,47 @@ const ROWS = [
   },
 ];
 
+const COLUMNS = [
+  { key: "label" as const, header: "Feature", highlight: false },
+  { key: "hd3" as const, header: "Keysight InfiniiVision HD3", highlight: true },
+  { key: "mid" as const, header: "Standard 12-Bit Class", highlight: false },
+  { key: "conventional" as const, header: "Conventional Midrange Scopes", highlight: false },
+];
+
+const DOT_COUNT = COLUMNS.length - 1;
+
 export default function ComparisonSection() {
   const [expanded, setExpanded] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [activeDot, setActiveDot] = useState(0);
+
+  const scrollToIndex = (i: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const child = track.children[i] as HTMLElement | undefined;
+    child?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+    setActiveDot(i);
+  };
+
+  const handleScroll = () => {
+    const track = trackRef.current;
+    if (!track) return;
+    const scrollCenter = track.scrollLeft + track.clientWidth / 2;
+    let closest = 0;
+    let closestDist = Infinity;
+    Array.from(track.children)
+      .slice(0, COLUMNS.length)
+      .forEach((child, i) => {
+        const el = child as HTMLElement;
+        const center = el.offsetLeft + el.clientWidth / 2;
+        const dist = Math.abs(center - scrollCenter);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closest = i;
+        }
+      });
+    setActiveDot(Math.min(closest, DOT_COUNT - 1));
+  };
 
   return (
     <section className="relative flex w-full items-start overflow-hidden px-4 py-8">
@@ -114,56 +153,71 @@ export default function ComparisonSection() {
           </div>
         </div>
 
-        <div className="w-full overflow-x-auto rounded-b-2xl bg-[#373a36]/50 px-6 pb-6 pt-4">
-          <table className="w-max min-w-full border-collapse text-[13px]">
-            <thead>
-              <tr>
-                <th className="w-[150px] border-b border-[#373a36] py-2 text-left align-bottom font-medium text-[#e9eaed]">
-                  Feature
-                </th>
-                <th className="w-[150px] rounded-t-lg border-b border-black/50 bg-[#373a36] px-4 py-2 text-left align-bottom font-medium text-[#e9eaed]">
-                  Keysight InfiniiVision HD3
-                </th>
-                <th className="w-[150px] border-b border-[#373a36] px-4 py-2 text-left align-bottom font-medium text-[#e9eaed]">
-                  Standard 12-Bit Class
-                </th>
-                <th className="w-[150px] border-b border-[#373a36] px-4 py-2 text-left align-bottom font-medium text-[#e9eaed]">
-                  Conventional Midrange Scopes
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {ROWS.map((row) => (
-                <tr key={row.label}>
-                  <td className="border-b border-[#373a36] py-2 font-medium text-[#e9eaed]">
-                    {row.label}
-                  </td>
-                  <td className="border-b border-black/50 bg-[#373a36] px-4 py-2 text-[#e9eaed]">
-                    {row.hd3}
-                  </td>
-                  <td className="border-b border-[#373a36] px-4 py-2 text-[#e9eaed]">
-                    {row.mid}
-                  </td>
-                  <td className="border-b border-[#373a36] px-4 py-2 text-[#e9eaed]">
-                    {row.conventional}
-                  </td>
-                </tr>
-              ))}
-              <tr>
-                <td />
-                <td className="rounded-b-lg bg-[#373a36] px-4 py-3">
-                  <button
-                    type="button"
-                    className="w-full rounded bg-keysight-red px-[18px] py-[10px] text-[13px] font-medium text-white transition-colors hover:bg-[#c40022] active:bg-[#a3001c]"
-                  >
-                    Request quote
-                  </button>
-                </td>
-                <td />
-                <td />
-              </tr>
-            </tbody>
-          </table>
+        <div className="flex w-full flex-col items-center gap-4 rounded-b-2xl bg-[#373a36]/50 px-6 pb-6 pt-4">
+          <div
+            ref={trackRef}
+            onScroll={handleScroll}
+            aria-label="Comparison table, swipe to see additional columns"
+            className="grid w-full snap-x snap-mandatory grid-cols-[repeat(4,50%)] overflow-x-auto text-[13px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {COLUMNS.map((col) => (
+              <div
+                key={`head-${col.key}`}
+                className={`snap-start border-b py-2 text-left align-bottom font-medium text-[#e9eaed] ${
+                  col.highlight
+                    ? "rounded-t-lg border-black/50 bg-[#373a36] px-4"
+                    : "border-[#373a36] " + (col.key === "label" ? "" : "px-4")
+                }`}
+              >
+                {col.header}
+              </div>
+            ))}
+
+            {ROWS.flatMap((row) =>
+              COLUMNS.map((col) => (
+                <div
+                  key={`${row.label}-${col.key}`}
+                  className={`border-b py-2 text-[#e9eaed] ${
+                    col.highlight
+                      ? "border-black/50 bg-[#373a36] px-4"
+                      : "border-[#373a36] " +
+                        (col.key === "label" ? "font-medium" : "px-4")
+                  }`}
+                >
+                  {row[col.key]}
+                </div>
+              ))
+            )}
+
+            {COLUMNS.map((col) => (
+              <div key={`foot-${col.key}`}>
+                {col.highlight && (
+                  <div className="rounded-b-lg bg-[#373a36] px-4 py-3">
+                    <button
+                      type="button"
+                      className="w-full rounded bg-keysight-red px-[18px] py-[10px] text-[13px] font-medium text-white transition-colors hover:bg-[#c40022] active:bg-[#a3001c]"
+                    >
+                      Request quote
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-center gap-2 rounded-full p-2">
+            {Array.from({ length: DOT_COUNT }).map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Go to columns ${i + 1} and ${i + 2}`}
+                onClick={() => scrollToIndex(i)}
+                className={`h-2 rounded-full transition-all ${
+                  activeDot === i ? "w-6 bg-white" : "w-2 bg-white/30"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

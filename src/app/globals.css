@@ -21,10 +21,7 @@
 
 html {
   -webkit-tap-highlight-color: transparent;
-}
-
-body {
-  overflow-x: hidden;
+  background-color: var(--color-extra-light-gray);
 }
 
 @keyframes marquee {

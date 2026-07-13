@@ -15,7 +15,7 @@ const PAGES = [CATEGORIES, CATEGORIES, CATEGORIES];
 
 export default function Browse() {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
 
   const scrollToIndex = (i: number) => {
     const track = trackRef.current;
