@@ -127,12 +127,12 @@ export default function Footer() {
         </button>
 
         <div
-          className={`grid w-full min-w-0 overflow-hidden transition-[grid-template-rows] duration-300 ease-out ${
+          className={`grid w-full min-w-0 overflow-x-visible overflow-y-hidden transition-[grid-template-rows] duration-300 ease-out ${
             familiesOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
           }`}
         >
           <div className="flex min-w-0 min-h-0 flex-col gap-4">
-            <div className="flex w-full min-w-0 items-center gap-[6px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="-mx-4 flex w-[calc(100%+2rem)] min-w-0 items-center gap-[6px] overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {FILTERS.map((filter) => {
                 const isActive = filter === activeFilter;
                 return (
@@ -152,7 +152,7 @@ export default function Footer() {
               })}
             </div>
 
-            <div className="flex w-full min-w-0 items-center gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="-mx-4 flex w-[calc(100%+2rem)] min-w-0 items-center gap-3 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {FAMILIES.map((family, i) => (
                 <div
                   key={i}
