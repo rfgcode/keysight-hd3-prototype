@@ -17,7 +17,7 @@ export default function ProductIntro() {
           Available HD3 Configuration – OEM Certified and Ready to Ship
         </h2>
         <p
-          className={`text-[13px] leading-[1.5] text-black ${
+          className={`text-[16px] leading-[1.5] text-black ${
             expanded ? "" : "line-clamp-3"
           }`}
         >
@@ -26,7 +26,7 @@ export default function ProductIntro() {
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="text-[13px] leading-[1.5] text-[#797a7c] underline-offset-2 hover:underline"
+          className="text-[16px] leading-[1.5] text-[#797a7c] underline-offset-2 hover:underline"
         >
           {expanded ? "Read less" : "Read more"}
         </button>
